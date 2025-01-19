@@ -2,7 +2,8 @@ package com.example.miPrimeraApi.services;
 
 import com.example.miPrimeraApi.entities.Base;
 import com.example.miPrimeraApi.repositories.BaseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,30 +11,50 @@ import java.util.Optional;
 
 public class BaseService<E extends Base, ID extends Serializable> {
 
-    @Autowired
     protected BaseRepository<E, ID> baseRepository;
 
     public BaseService(BaseRepository<E, ID> baseRepository){
         this.baseRepository = baseRepository;
     }
+    @Transactional
 
-    public List<E> listar() {
-        return baseRepository.findAll();
+    public List<E> listar() throws Exception {
+        try {
+            return baseRepository.findAll();
+        }catch(Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
-    public Optional<E> buscarPorId(ID id) {
-        return Optional.ofNullable(baseRepository.findById(id).orElse(null));
+    public Optional<E> buscarPorId(ID id) throws Exception {
+        try {
+            return Optional.ofNullable(baseRepository.findById(id).orElse(null));
+        }catch(Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
-    public E crear(E entity) {
-        return baseRepository.save(entity);
+    public E crear(E entity) throws Exception {
+        try{
+            return baseRepository.save(entity);
+        }catch(Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
-    public E actualizar(E entity) {
-        return baseRepository.save(entity);
+    public E actualizar(E entity) throws Exception {
+        try{
+            return baseRepository.save(entity);
+        }catch(Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
-    public void eliminar(ID id) {
+    public void eliminar(ID id) throws Exception {
+        try{
         baseRepository.deleteById(id);
+        }catch(Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 }

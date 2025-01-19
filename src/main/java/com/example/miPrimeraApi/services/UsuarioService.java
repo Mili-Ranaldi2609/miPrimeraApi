@@ -8,28 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UsuarioService {
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    public Usuario crearUsuario(Usuario usuario){
-        return usuarioRepository.save(usuario);
+public class UsuarioService extends BaseService <Usuario,Long> {
+    public UsuarioService(UsuarioRepository usuarioRepository){
+        super(usuarioRepository);
     }
 
-    public Usuario buscarUsuarioPorId(Long id){
-        return usuarioRepository.findById(id).orElse(null);
-    }
 
-    public List<Usuario> listarUsuarios(){
-        return usuarioRepository.findAll();
-    }
-
-    public Usuario actualizarUsuario(Usuario usuario){
-        return usuarioRepository.save(usuario);
-    }
-
-    public void eliminarUsuario(Long id){
-        usuarioRepository.deleteById(id);
-    }
 }

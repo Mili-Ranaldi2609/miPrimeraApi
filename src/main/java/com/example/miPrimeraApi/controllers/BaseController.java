@@ -18,30 +18,30 @@ public abstract class BaseController<E extends Base, ID extends Serializable> {
     }
 
     @GetMapping()
-    public ResponseEntity<List<E>> listar(){
+    public ResponseEntity<List<E>> listar() throws Exception {
         List<E> entities = service.listar();
         return ResponseEntity.ok(entities);
     }
 
     @GetMapping("/{id}")
-    public Optional<E> buscarPorId(@PathVariable ID id){
+    public Optional<E> buscarPorId(@PathVariable ID id) throws Exception {
         return service.buscarPorId(id);
     }
 
     @PostMapping()
-    public ResponseEntity<E> crear(@RequestBody E entity) {
+    public ResponseEntity<E> crear(@RequestBody E entity) throws Exception {
         E entidadCreada = service.crear(entity);
         return ResponseEntity.ok(entidadCreada);
     }
 
     @PutMapping()
-    public ResponseEntity<E> actualizar(@RequestBody E entity) {
+    public ResponseEntity<E> actualizar(@RequestBody E entity) throws Exception {
         E entidadAct = service.actualizar(entity);
         return ResponseEntity.ok(entidadAct);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable ID id) {
+    public void eliminar(@PathVariable ID id) throws Exception {
         service.eliminar(id);
     }
 

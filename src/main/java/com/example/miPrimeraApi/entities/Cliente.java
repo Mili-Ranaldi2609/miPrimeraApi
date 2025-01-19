@@ -1,15 +1,15 @@
 package com.example.miPrimeraApi.entities;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.example.miPrimeraApi.entities.enums.Rol;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -20,9 +20,13 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class Cliente extends Persona{
-
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(name="rol_cliente")
+    private Rol rol;
+    /*@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private Set<Pedido> pedidos = new HashSet<>();
+    private Set<Pedido> pedidos = new HashSet<>();*/
+    @ManyToMany(mappedBy = "clientes")
+    private List<Domicilio> domicilios= new ArrayList<>();
+
 
 }

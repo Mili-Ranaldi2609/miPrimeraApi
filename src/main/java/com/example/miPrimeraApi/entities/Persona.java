@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Persona extends Base implements Serializable {
+public abstract class Persona extends Base {
 
     protected String nombre;
     protected String apellido;
@@ -20,9 +20,11 @@ public abstract class Persona extends Base implements Serializable {
     protected String fechaNacimiento;
 
     @OneToOne
+    @JoinColumn(name="imagen_id")
     protected Imagen imagenPersona;
 
     @OneToOne
+    @JoinColumn(name="usuario_id")
     protected Usuario usuario;
 
 }

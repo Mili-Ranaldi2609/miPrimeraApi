@@ -38,5 +38,17 @@ public class Pedido extends Base{
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name="empleado_id")
+    private Empleado empleado;
+    @ManyToOne
+    @JoinColumn(name="domicilio_id")
+    private Domicilio domicilio;
+    @ManyToOne
+    @JoinColumn(name="sucursal_id")
+    private Sucursal sucursal;
+    @OneToOne
+    @JoinColumn(name="factura_id")
+    private Factura factura;
 
 }

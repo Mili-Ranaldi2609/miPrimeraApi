@@ -8,28 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ImagenService {
-
-    @Autowired
-    private ImagenRepository imagenRepository;
-
-    public Imagen crearImagen(Imagen imagen){
-        return imagenRepository.save(imagen);
+public class ImagenService extends BaseService<Imagen,Long> {
+    public ImagenService(ImagenRepository imagenRepository){
+        super(imagenRepository);
     }
 
-    public Imagen buscarImagenPorId(Long id){
-        return imagenRepository.findById(id).orElse(null);
-    }
-
-    public List<Imagen> listarImagenes(){
-        return imagenRepository.findAll();
-    }
-
-    public Imagen actualizarImagen(Imagen imagen){
-        return imagenRepository.save(imagen);
-    }
-
-    public void eliminarImagen(Long id){
-        imagenRepository.deleteById(id);
-    }
 }
